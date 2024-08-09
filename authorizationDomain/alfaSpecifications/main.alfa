@@ -1,0 +1,25 @@
+namespace tutorial {
+
+import Attributes.*	
+import tutorial.records.*
+import tutorial.attributes.*
+
+/*
+ * The Main Policyset
+ */
+policyset main{
+	apply firstApplicable
+	/*
+	 * Master APS Tutorial Records policy
+	 */
+	policyset tutorialRecords{
+		target clause stringEqualIgnoreCase("record", object.objectType) or
+		stringEndsWith("record", api.path)
+	    apply firstApplicable	
+	      mainRecords
+	} //tutorialRecords
+} // main
+
+
+
+} // tutorial
